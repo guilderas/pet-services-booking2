@@ -14,7 +14,7 @@ def api_search():
     service = data.get("petService", "")
     date_range = data.get("dateRange", "")
 
-    # TODO: Replace this with real search logic / DB calls.
+    # TODO: Replace this with your real search logic / DB calls.
     mock_results = [
         {
             "id": 1,
@@ -42,11 +42,10 @@ def api_search():
         }
     ]
 
-    # Very basic filter on the mock list
     def matches(item):
         ok = True
         if pet_type:
-            ok = ok and True  # can add pet-type specific filtering here later
+            ok = ok and True  # future: add pet-type specific filtering
         if location:
             ok = ok and (item["location"] == location)
         if service:
@@ -67,4 +66,5 @@ def api_search():
     })
 
 if __name__ == "__main__":
+    # Local dev only. On Azure, Docker CMD will use Gunicorn instead.
     app.run(host="0.0.0.0", port=5000, debug=True)
